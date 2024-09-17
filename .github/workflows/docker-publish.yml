@@ -49,7 +49,7 @@ jobs:
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
-          image: index.docker.io/${{ env.IMAGE_NAME }}:latest
+          image: index.docker.io/${{ env.IMAGE_NAME }}:${{ steps.current-time.outputs.UNIX_TIME }}
           format: 'cyclonedx-json'
           output-file: 'sbom.cyclonedx.json'
 
