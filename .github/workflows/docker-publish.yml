@@ -46,10 +46,17 @@ jobs:
           subject-digest: ${{ steps.build-and-push.outputs.digest }}
           push-to-registry: true
 
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: index.docker.io/${{ env.IMAGE_NAME }}:latest
+          format: 'cyclonedx-json'
+          output-file: 'sbom.cyclonedx.json'
+
       - name: Generate SBOM attestation
         uses: actions/attest-sbom@v1
         with:
           subject-name: index.docker.io/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.build-and-push.outputs.digest }}
-          sbom-path: 'sbom.json'
+          sbom-path: 'sbom.cyclonedx.json'
           push-to-registry: true
