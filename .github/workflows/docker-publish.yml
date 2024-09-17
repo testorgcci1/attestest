@@ -45,3 +45,11 @@ jobs:
           subject-name: index.docker.io/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.build-and-push.outputs.digest }}
           push-to-registry: true
+
+      - name: Generate SBOM attestation
+        uses: actions/attest-sbom@v1
+        with:
+          subject-name: index.docker.io/${{ env.IMAGE_NAME }}
+          subject-digest: ${{ steps.build-and-push.outputs.digest }}
+          sbom-path: 'sbom.json'
+          push-to-registry: true
