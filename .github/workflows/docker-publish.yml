@@ -5,4 +5,4 @@ on:
 
 jobs:
   build:
-    uses: testorgcci1/reusable-workflows/.github/workflows/build-and-push.yml
+    uses: testorgcci1/reusable-workflows/.github/workflows/build-and-push.yml@main
